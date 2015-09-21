@@ -28,6 +28,11 @@ char devuelveChar(int i){
 
 		}
 }
+adyacentes inicializaNodo(adyacentes auxiliar, int valorIndice, int valorPeso, adyacentes dirMem){
+    auxiliar->indice=valorIndice;
+    auxiliar->peso=valorPeso;
+    auxiliar->sgte=dirMem;
+}
 
 adyacentes devuelveListaVecinos(int i){
     adyacentes aux;
@@ -37,7 +42,11 @@ adyacentes devuelveListaVecinos(int i){
 		{
             case  0:
 
-            case  1: return 'b';
+                return aux;
+            case  1:
+                aux->indice=2;
+                aux->peso=1;
+                aux->sgte=
             case  2: return 'c';
             case  3: return 'd';
             case  4: return 'e';
