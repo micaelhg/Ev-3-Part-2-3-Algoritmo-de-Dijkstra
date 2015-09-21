@@ -3,6 +3,7 @@
 
 typedef struct tipo_adyacentes{
   int indice;
+  int peso;
   struct tipo_adyacentes *sgte;
 }adyacentes;
 
@@ -28,7 +29,7 @@ char devuelveChar(int i){
 		}
 }
 
-adyacentes devuelvePrimerVecino(int i){
+adyacentes devuelveListaVecinos(int i){
         switch ( i )
 		{
             case  0: return (a);
@@ -40,20 +41,20 @@ adyacentes devuelvePrimerVecino(int i){
             case  6: return 'g';
             case  7: return 'h';
 
-
 		}
 }
 
 
-int inicializaG(Nodo grafo[] ){
+int inicializaG(Nodo grafo[]){
     int i=0;
     while (i<8){
         grafo[i].ID=i;
         grafo[i].nombreHosp=devuelveChar(i);
-       // grafo[i]->primerVecino=devuelvePrimerVecino(i);
+        grafo[i].primerVecino=devuelveListaVecinos(i);
         i++;
     }
 }
+
 
 int main(){
     Nodo grafo[7];
