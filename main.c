@@ -29,6 +29,7 @@ char devuelveChar(int i){
 		}
 }
 adyacentes inicializaNodo(adyacentes auxiliar, int valorIndice, int valorPeso, adyacentes dirMem){
+    auxiliar=malloc(sizeof(auxiliar));
     auxiliar->indice=valorIndice;
     auxiliar->peso=valorPeso;
     auxiliar->sgte=dirMem;
@@ -36,17 +37,15 @@ adyacentes inicializaNodo(adyacentes auxiliar, int valorIndice, int valorPeso, a
 
 adyacentes devuelveListaVecinos(int i){
     adyacentes aux;
-    aux=malloc(sizeof(aux));
-
         switch ( i )
 		{
             case  0:
-
+                aux=inicializaNodo(aux, 1, 1, NULL);
                 return aux;
             case  1:
-                aux->indice=2;
-                aux->peso=1;
-                aux->sgte=
+                aux=inicializaNodo(aux, 2, 1, NULL);
+                aux->sgte=inicializaNodo(aux->ste, 4, 2, NULL);
+
             case  2: return 'c';
             case  3: return 'd';
             case  4: return 'e';
