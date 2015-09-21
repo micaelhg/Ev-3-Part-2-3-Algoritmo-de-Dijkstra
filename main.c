@@ -30,9 +30,13 @@ char devuelveChar(int i){
 }
 
 adyacentes devuelveListaVecinos(int i){
+    adyacentes aux;
+    aux=malloc(sizeof(aux));
+
         switch ( i )
 		{
-            case  0: return (a);
+            case  0:
+
             case  1: return 'b';
             case  2: return 'c';
             case  3: return 'd';
@@ -40,7 +44,6 @@ adyacentes devuelveListaVecinos(int i){
             case  5: return 'f';
             case  6: return 'g';
             case  7: return 'h';
-
 		}
 }
 
