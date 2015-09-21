@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1442620758 source:c:\users\micael hidalgo\documents\github\ev-3-part-2-3-algoritmo-de-dijkstra\main.c
+	<stdio.h>
+	<stdlib.h>
+
