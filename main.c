@@ -29,7 +29,7 @@ char devuelveChar(int i){
 		}
 }
 adyacentes inicializaNodo(adyacentes auxiliar, int valorIndice, int valorPeso){
-    auxiliar=malloc(sizeof(auxiliar));
+    auxiliar=malloc(sizeof(adyacentes));
     auxiliar->indice=valorIndice;
     auxiliar->peso=valorPeso;
     auxiliar->sgte=NULL;
@@ -41,25 +41,25 @@ adyacentes devuelveListaVecinos(int i){
         switch ( i )
 		{
             case  0:
-                aux=inicializaNodo(aux, 1, 1);
+                aux=inicializaNodo(aux, 1, 0);
             case  1:
-                aux=inicializaNodo(aux, 2, 1);
-                aux->sgte=inicializaNodo(aux->ste, 3, 2);
+                aux=inicializaNodo(aux, 2, 0);
+                aux->sgte=inicializaNodo(aux->ste, 3, 0);
             case  2:
-                aux=inicializaNodo(aux, 0, 2);
-                aux->sgte=inicializaNodo(aux->sgte, 4, 2);
+                aux=inicializaNodo(aux, 0, 0);
+                aux->sgte=inicializaNodo(aux->sgte, 4, 0);
             case  3:
-                aux=inicializaNodo(aux, 2, 1);
+                aux=inicializaNodo(aux, 2, 0);
             case  4:
-                aux=inicializaNodo(aux, 5, 1);
-                aux->sgte=inicializaNodo(aux->sgte, 6, 2);
+                aux=inicializaNodo(aux, 5, 0);
+                aux->sgte=inicializaNodo(aux->sgte, 6, 0);
             case  5:
-                aux=inicializaNodo(aux, 6, 1);
-                aux-sgte=inicializaNodo(aux->sgte, 3, 2);
+                aux=inicializaNodo(aux, 6, 0);
+                aux-sgte=inicializaNodo(aux->sgte, 3, 0);
             case  6:
-                aux=inicializaNodo(aux, 7, 1);
+                aux=inicializaNodo(aux, 7, 0);
             case  7:
-                aux=inicializaNodo(aux, 5, 2);
+                aux=inicializaNodo(aux, 5, 0);
 		}
 		return aux;
 }
