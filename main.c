@@ -10,8 +10,9 @@ typedef struct tipo_adyacentes{
 typedef struct tipo_nodo{     /* se define un nodo generico para las dos tipos de busquedas*/
   int ID;       /* etiqueta */
   char nombreHosp;
-  adyacentes *primerVecino;
   int padre; /* indice del padre en el arreglo de nodos  */
+  int visitado; //variable considerada como boolena
+  adyacentes *primerVecino;
 }Nodo;
 
 char devuelveChar(int i){
@@ -28,16 +29,16 @@ char devuelveChar(int i){
 
 		}
 }
-adyacentes inicializaNodo(adyacentes auxiliar, int valorIndice, int valorPeso){
-    auxiliar=malloc(sizeof(adyacentes));
-    auxiliar->indice=valorIndice;
-    auxiliar->peso=valorPeso;
-    auxiliar->sgte=NULL;
+adyacentes inicializaNodo(adyacentes aux, int valorIndice, int valorPeso){
+    aux->indice= valorIndice;
+    aux->peso = valorPeso;
+    aux->sgte  = NULL;
     return auxiliar;
 }
 
 adyacentes devuelveListaVecinos(int i){
     adyacentes aux;
+    aux=malloc(sizeof(adyacentes));
         switch ( i )
 		{
             case  0:
@@ -66,21 +67,21 @@ adyacentes devuelveListaVecinos(int i){
 
 
 int inicializaG(Nodo grafo[]){
-    int i=0;
+    int i=0;  //Se declara un indice para recorrer el arreglo "grafo".
     while (i<8){
-        grafo[i].ID=i;
-        grafo[i].nombreHosp=devuelveChar(i);
-        grafo[i].primerVecino=devuelveListaVecinos(i);
-        grafo[i].padre=-1; //no hay padre
+        grafo[i].ID=i; //Se le asigna identificador al nodo
+        grafo[i].nombreHosp=devuelveChar(i); //se asigna Nombre al nodo.
+        grafo[i].primerVecino=devuelveListaVecinos(i); //Se estableces los vecinos predefinidos
+        grafo[i].padre=-1; //Se establece que no hay padre
+        grafo[i].visitado=0; //Se establece como nodo NO visitado
         i++;
     }
 }
 
-
 int main(){
-    Nodo grafo[7];
+    Nodo grafo[7]; //Se declara el grafo como arreglo
     printf("-Se Declaro Grafo \n ");
-    if (inicializaG( grafo )) {
+    if (inicializaG( grafo )) { //Se inicializa el grafo predefinido
         printf("-Se inicializo el grafo \n");
     }
     return 1;
