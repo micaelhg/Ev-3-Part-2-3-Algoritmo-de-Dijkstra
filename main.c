@@ -13,7 +13,7 @@ typedef struct tipo_nodo{     /* se define un nodo generico para las dos tipos d
   int padre; /* indice del padre en el arreglo de nodos  */
   int visitado; //variable considerada como boolena
   adyacentes *primerVecino;
-}Nodo;
+}nodo;
 
 char devuelveChar(int i){
     switch ( i )
@@ -29,44 +29,47 @@ char devuelveChar(int i){
 
 		}
 }
-adyacentes inicializaNodo(adyacentes aux, int valorIndice, int valorPeso){
+/*
+adyacentes inicializaVecino(adyacentes aux, int valorIndice, int valorPeso){
     aux->indice= valorIndice;
     aux->peso = valorPeso;
     aux->sgte  = NULL;
     return auxiliar;
 }
-
+*/
 adyacentes devuelveListaVecinos(int i){
     adyacentes aux;
     aux=malloc(sizeof(adyacentes));
-        switch ( i )
+    aux->peso=6;
+    printf("peso de aux: %i", aux->peso)
+      /*  switch ( i )
 		{
             case  0:
-                aux=inicializaNodo(aux, 1, 0);
+                aux=inicializaVecino(aux, 1, 0);
             case  1:
-                aux=inicializaNodo(aux, 2, 0);
-                aux->sgte=inicializaNodo(aux->ste, 3, 0);
+                aux=inicializaVecino(aux, 2, 0);
+                aux->sgte=inicializaVecino(aux->ste, 3, 0);
             case  2:
-                aux=inicializaNodo(aux, 0, 0);
-                aux->sgte=inicializaNodo(aux->sgte, 4, 0);
+                aux=inicializaVecino(aux, 0, 0);
+                aux->sgte=inicializaVecino(aux->sgte, 4, 0);
             case  3:
-                aux=inicializaNodo(aux, 2, 0);
+                aux=inicializaVecino(aux, 2, 0);
             case  4:
-                aux=inicializaNodo(aux, 5, 0);
-                aux->sgte=inicializaNodo(aux->sgte, 6, 0);
+                aux=inicializaVecino(aux, 5, 0);
+                aux->sgte=inicializaVecino(aux->sgte, 6, 0);
             case  5:
-                aux=inicializaNodo(aux, 6, 0);
-                aux-sgte=inicializaNodo(aux->sgte, 3, 0);
+                aux=inicializaVecino(aux, 6, 0);
+                aux-sgte=inicializaVecino(aux->sgte, 3, 0);
             case  6:
-                aux=inicializaNodo(aux, 7, 0);
+                aux=inicializaVecino(aux, 7, 0);
             case  7:
-                aux=inicializaNodo(aux, 5, 0);
-		}
+                aux=inicializaVecino(aux, 5, 0);
+		}*/
 		return aux;
 }
 
 
-int inicializaG(Nodo grafo[]){
+void  inicializaG(nodo grafo[]){
     int i=0;  //Se declara un indice para recorrer el arreglo "grafo".
     while (i<8){
         grafo[i].ID=i; //Se le asigna identificador al nodo
@@ -78,11 +81,12 @@ int inicializaG(Nodo grafo[]){
     }
 }
 
+
 int main(){
-    Nodo grafo[7]; //Se declara el grafo como arreglo
+    nodo grafo[7]; //Se declara el grafo como arreglo
     printf("-Se Declaro Grafo \n ");
-    if (inicializaG( grafo )) { //Se inicializa el grafo predefinido
-        printf("-Se inicializo el grafo \n");
-    }
+    inicializaG( grafo );
+
+   // Dijkstra();
     return 1;
 }
