@@ -29,26 +29,24 @@ char devuelveChar(int i){
 
 		}
 }
-/*
-adyacentes inicializaVecino(adyacentes aux, int valorIndice, int valorPeso){
+
+adyacentes *inicializaVecino(adyacentes *aux, int valorIndice, int valorPeso){
     aux->indice= valorIndice;
     aux->peso = valorPeso;
     aux->sgte  = NULL;
-    return auxiliar;
+    return aux;
 }
-*/
-adyacentes devuelveListaVecinos(int i){
-    adyacentes aux;
-    aux=malloc(sizeof(adyacentes));
-    aux->peso=6;
-    printf("peso de aux: %i", aux->peso)
-      /*  switch ( i )
+
+adyacentes *devuelveListaVecinos(int i){
+    adyacentes *aux;
+    aux=(adyacentes*)malloc(sizeof(adyacentes));
+         switch ( i )
 		{
             case  0:
                 aux=inicializaVecino(aux, 1, 0);
             case  1:
                 aux=inicializaVecino(aux, 2, 0);
-                aux->sgte=inicializaVecino(aux->ste, 3, 0);
+                aux->sgte=inicializaVecino(aux->sgte, 3, 0);
             case  2:
                 aux=inicializaVecino(aux, 0, 0);
                 aux->sgte=inicializaVecino(aux->sgte, 4, 0);
@@ -59,12 +57,13 @@ adyacentes devuelveListaVecinos(int i){
                 aux->sgte=inicializaVecino(aux->sgte, 6, 0);
             case  5:
                 aux=inicializaVecino(aux, 6, 0);
-                aux-sgte=inicializaVecino(aux->sgte, 3, 0);
+                aux->sgte=inicializaVecino(aux->sgte, 3, 0);
             case  6:
                 aux=inicializaVecino(aux, 7, 0);
             case  7:
                 aux=inicializaVecino(aux, 5, 0);
-		}*/
+		}
+
 		return aux;
 }
 
