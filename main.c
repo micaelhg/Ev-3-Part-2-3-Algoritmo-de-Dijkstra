@@ -30,41 +30,38 @@ char devuelveChar(int i){
 		}
 }
 
-adyacentes *inicializaVecino(adyacentes *aux, int valorIndice, int valorPeso){
+void inicializaVecino(adyacentes *aux, int valorIndice, int valorPeso){
     aux->indice= valorIndice;
     aux->peso = valorPeso;
     aux->sgte  = NULL;
-    return aux;
 }
 
 adyacentes *devuelveListaVecinos(int i){
     adyacentes *aux;
     aux=(adyacentes*)malloc(sizeof(adyacentes));
-         switch ( i )
-		{
-            case  0:
-                aux=inicializaVecino(aux, 1, 0);
-            case  1:
-                aux=inicializaVecino(aux, 2, 0);
-                aux->sgte=inicializaVecino(aux->sgte, 3, 0);
-            case  2:
-                aux=inicializaVecino(aux, 0, 0);
-                aux->sgte=inicializaVecino(aux->sgte, 4, 0);
-            case  3:
-                aux=inicializaVecino(aux, 2, 0);
-            case  4:
-                aux=inicializaVecino(aux, 5, 0);
-                aux->sgte=inicializaVecino(aux->sgte, 6, 0);
-            case  5:
-                aux=inicializaVecino(aux, 6, 0);
-                aux->sgte=inicializaVecino(aux->sgte, 3, 0);
-            case  6:
-                aux=inicializaVecino(aux, 7, 0);
-            case  7:
-                aux=inicializaVecino(aux, 5, 0);
-		}
 
-		return aux;
+    if (i=0){ inicializaVecino(aux, 1, 0);}
+    if (i=1){
+        inicializaVecino(aux, 2, 0);
+         aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
+        inicializaVecino(aux->sgte, 3, 0);}
+    if (i=2){
+        inicializaVecino(aux, 0, 0);
+        aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
+        inicializaVecino(aux->sgte, 4, 0);}
+    if (i=3){ inicializaVecino(aux, 2, 0);}
+    if (i=4){
+        inicializaVecino(aux, 5, 0);
+        aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
+        inicializaVecino(aux->sgte, 6, 0);}
+    if (i=5){
+        inicializaVecino(aux, 6, 0);
+        aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
+        inicializaVecino(aux->sgte, 3, 0);}
+    if (i=6){inicializaVecino(aux, 7, 0);}
+    if (i=7){inicializaVecino(aux, 5, 0);}
+
+    return aux;
 }
 
 
@@ -76,8 +73,9 @@ void  inicializaG(nodo grafo[]){
         grafo[i].primerVecino=devuelveListaVecinos(i); //Se estableces los vecinos predefinidos
         grafo[i].padre=-1; //Se establece que no hay padre
         grafo[i].visitado=0; //Se establece como nodo NO visitado
-        i++;
+        i++;printf("i=%d \n",i);
     }
+
 }
 
 
@@ -86,6 +84,11 @@ int main(){
     printf("-Se Declaro Grafo \n ");
     inicializaG( grafo );
 
-   // Dijkstra();
+    // Dijkstra();
+     printf("ID: %i \n", grafo[4].ID);
+    printf("nombre: %c \n", grafo[4].nombreHosp);
+     printf("indice del primer adyacente: %i \n", grafo[4].primerVecino->indice);
+         printf("-EL PROGRAMA HA TERMINADO  \n ");
+
     return 1;
 }
