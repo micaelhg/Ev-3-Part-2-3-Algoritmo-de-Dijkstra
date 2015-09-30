@@ -40,26 +40,26 @@ adyacentes *devuelveListaVecinos(int i){
     adyacentes *aux;
     aux=(adyacentes*)malloc(sizeof(adyacentes));
 
-    if (i=0){ inicializaVecino(aux, 1, 0);}
-    if (i=1){
+    if (i==0){ inicializaVecino(aux, 1, 0);printf("0\n");}
+    if (i==1){printf("1\n");
         inicializaVecino(aux, 2, 0);
          aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
         inicializaVecino(aux->sgte, 3, 0);}
-    if (i=2){
+    if (i==2){printf("2\n");
         inicializaVecino(aux, 0, 0);
         aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
         inicializaVecino(aux->sgte, 4, 0);}
-    if (i=3){ inicializaVecino(aux, 2, 0);}
-    if (i=4){
+    if (i==3){printf("3\n"); inicializaVecino(aux, 2, 0);}
+    if (i==4){printf("4\n");
         inicializaVecino(aux, 5, 0);
         aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
         inicializaVecino(aux->sgte, 6, 0);}
-    if (i=5){
+    if (i==5){printf("5\n");
         inicializaVecino(aux, 6, 0);
         aux->sgte=(adyacentes*)malloc(sizeof(adyacentes));
         inicializaVecino(aux->sgte, 3, 0);}
-    if (i=6){inicializaVecino(aux, 7, 0);}
-    if (i=7){inicializaVecino(aux, 5, 0);}
+    if (i==6){printf("6\n");inicializaVecino(aux, 7, 0);}
+    if (i==7){printf("7\n");inicializaVecino(aux, 5, 0);}
 
     return aux;
 }
@@ -88,7 +88,7 @@ int main(){
      printf("ID: %i \n", grafo[4].ID);
     printf("nombre: %c \n", grafo[4].nombreHosp);
      printf("indice del primer adyacente: %i \n", grafo[4].primerVecino->indice);
-         printf("-EL PROGRAMA HA TERMINADO  \n ");
+         printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO:::::::::::::::::::::  \n ");
 
-    return 1;
+    return 0;
 }
