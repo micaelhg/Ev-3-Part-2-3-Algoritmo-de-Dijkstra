@@ -79,7 +79,7 @@ void  inicializaG(nodo grafo[]){
 }
 
 
-int main(){
+void main(){
     nodo grafo[7]; //Se declara el grafo como arreglo
     printf("-Se Declaro Grafo \n ");
     inicializaG( grafo );
@@ -88,7 +88,9 @@ int main(){
      printf("ID: %i \n", grafo[4].ID);
     printf("nombre: %c \n", grafo[4].nombreHosp);
      printf("indice del primer adyacente: %i \n", grafo[4].primerVecino->indice);
+     printf("indice del segundo adyacente: %i \n", grafo[4].primerVecino->sgte->indice);
+
          printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO:::::::::::::::::::::  \n ");
 
-    return 0;
+    //return 0;
 }
