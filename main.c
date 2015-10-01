@@ -106,7 +106,7 @@ void  inicializaG(nodo grafo[]){
 
 int relax(nodo *unGrafo, int unaID, int otraID)
 {
-    printf("\n Entro a Relax\n");
+    printf("\n... Realizando Relax\n");
 	if (unGrafo[otraID].peso > unGrafo[unaID].peso + 1)
 	{
 		unGrafo[otraID].peso = unGrafo[unaID].peso + 1;  //actualiza peso de nodo adyacente
@@ -118,7 +118,7 @@ int relax(nodo *unGrafo, int unaID, int otraID)
 
 int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 {
-    printf("\n Entro a Dijkstra \n");
+    printf("\nComenzando operacion  'Dijkstra' \n");
 	int cant_visitados, cont=0;
 	iniciaNodos(unGrafo, idInicial);
 	int idMinima = idInicial;
@@ -127,8 +127,10 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 	    int i;
         for (i=0; i< 8; i++)
 		{
+
 			if (unGrafo[i].peso < unGrafo[idMinima].peso && unGrafo[i].visitado!=1)
 			{
+
 				idMinima=i;
 			}
 		}
@@ -140,9 +142,12 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 		}
 		else
 		{
+
             adyacentes *temp = unGrafo[idMinima].primerVecino;
+
 			while (temp->sgte!=NULL)
 			{
+
                 cont++;
 				relax(unGrafo, idMinima, temp->indice);
 				temp=temp->sgte;
@@ -155,9 +160,9 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 
 int main(){
     nodo grafo[8]; //Se declara el grafo como arreglo
-    printf("-Se Declaro Grafo \n");
+    printf("-Se Declaro Grafo... ");
     inicializaG( grafo );
-    printf("-Se Inicializo Grafo \n");
+    printf("Se Inicializo Grafo \n");
     dijkstra(grafo, 0 , 7);
 
 
