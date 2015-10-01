@@ -12,7 +12,7 @@ typedef struct tipo_nodo{     /* se define un nodo generico para las dos tipos d
   char nombreHosp;
   int IDpadre; /* indice del padre en el arreglo de nodos  */
   int visitado; //variable considerada como boolena
-  int mejorCamino; //Peso
+  int peso; //Peso
   adyacentes *primerVecino;
 }nodo;
 
@@ -84,14 +84,82 @@ void  inicializaG(nodo grafo[]){
 }
 
 
+
+
+
+ /* ******************CODIGO DE DIJKSTRA**************************** */
+ int iniciaNodos(nodo *unGrafo, int id)
+{
+        printf("Entro a inicializa nodos\n");
+     int i;
+	 for (i=0; i< 8; i++)
+     {
+		 unGrafo[i].peso =999; //999=numero grande ~ inf
+		 //unGrafo[i].peso=-1;
+         unGrafo[i].IDpadre =-1;  //padre
+     }
+     unGrafo[id].peso=0;  //valor del peso del punto de partida
+     unGrafo[id].visitado=1;
+     return 0;
+}
+
+
+int relax(nodo *unGrafo, int unaID, int otraID)
+{
+    printf("\n Entro a Relax\n");
+	if (unGrafo[otraID].peso > unGrafo[unaID].peso + 1)
+	{
+		unGrafo[otraID].peso = unGrafo[unaID].peso + 1;  //actualiza peso de nodo adyacente
+		unGrafo[otraID].IDpadre= unaID;  //actualiza padre de nodo adyacente
+	}
+	return 0;
+}
+
+
+int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
+{
+    printf("\n Entro a Dijkstra \n");
+	int cant_visitados, cont=0;
+	iniciaNodos(unGrafo, idInicial);
+	int idMinima = idInicial;
+	do
+	{
+	    int i;
+        for (i=0; i< 8; i++)
+		{
+			if (unGrafo[i].peso < unGrafo[idMinima].peso && unGrafo[i].visitado!=1)
+			{
+				idMinima=i;
+			}
+		}
+		cant_visitados++;
+		if (idMinima==idFinal)
+		{
+			printf("encontrado camino mas corto: %i\n", unGrafo[idMinima].peso);
+			return EXIT_SUCCESS;
+		}
+		else
+		{
+            adyacentes *temp = unGrafo[idMinima].primerVecino;
+			while (temp->sgte!=NULL)
+			{
+                cont++;
+				relax(unGrafo, idMinima, temp->indice);
+				temp=temp->sgte;
+			}
+		}
+	} while (cant_visitados<=8);
+	return EXIT_FAILURE;
+}
+ /* *************************************************************** */
+
 int main(){
     nodo grafo[8]; //Se declara el grafo como arreglo
     printf("-Se Declaro Grafo \n");
     inicializaG( grafo );
     printf("-Se Inicializo Grafo \n");
+    dijkstra(grafo, 0 , 7);
 
-
-    // Dijkstra();
 
      printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO::::::::::::::::::::  \n ");
 
