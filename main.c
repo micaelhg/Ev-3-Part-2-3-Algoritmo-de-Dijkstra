@@ -12,6 +12,7 @@ typedef struct tipo_nodo{     /* se define un nodo generico para las dos tipos d
   char nombreHosp;
   int IDpadre; /* indice del padre en el arreglo de nodos  */
   int visitado; //variable considerada como boolena
+  int mejorCamino; //Peso
   adyacentes *primerVecino;
 }nodo;
 
@@ -68,7 +69,6 @@ adyacentes *devuelveListaVecinos(int i){
         inicializaVecino(aux, 7, 0);}
     if (i==7){
         inicializaVecino(aux, 5, 0);}
-
     return aux;
 }
 
@@ -79,16 +79,13 @@ void  inicializaG(nodo grafo[]){
         grafo[i].ID=i; //Se le asigna identificador al nodo
         grafo[i].nombreHosp=devuelveChar(i); //se asigna Nombre al nodo.
         grafo[i].primerVecino=devuelveListaVecinos(i); //Se estableces los vecinos predefinidos
-        grafo[i].IDpadre=-1; //Se establece que no hay padre
-        grafo[i].visitado=0; //Se establece como nodo NO visitado
         i++;
     }
-
 }
 
 
 int main(){
-    nodo grafo[7]; //Se declara el grafo como arreglo
+    nodo grafo[8]; //Se declara el grafo como arreglo
     printf("-Se Declaro Grafo \n");
     inicializaG( grafo );
     printf("-Se Inicializo Grafo \n");
@@ -96,7 +93,8 @@ int main(){
 
     // Dijkstra();
 
-     printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO:::::::::::::::::::::  \n ");
+     printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO::::::::::::::::::::  \n ");
 
     return 0;
 }
+
