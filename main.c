@@ -16,7 +16,6 @@ typedef struct tipo_nodo{     /* se define un nodo generico para las dos tipos d
   adyacentes *primerVecino;
 }nodo;
 
-
 //Funcion que devuelve el nombre del Hospital segun el caso
 char devuelveChar(int i){
     switch ( i )
@@ -29,7 +28,6 @@ char devuelveChar(int i){
             case  5: return 'f';
             case  6: return 'g';
             case  7: return 'h';
-
 		}
 }
 
@@ -39,12 +37,10 @@ void inicializaVecino(adyacentes *aux, int valorIndice, int valorPeso){
     aux->sgte  = NULL;
 }
 
-
 //Esta funcion devuelve el primer puntero a PimerVecino ya que es un grafo prediseñado
 adyacentes *devuelveListaVecinos(int i){
     adyacentes *aux;
     aux=(adyacentes*)malloc(sizeof(adyacentes));
-
     if (i==0){
             inicializaVecino(aux, 1, 0);}
     if (i==1){
@@ -72,7 +68,6 @@ adyacentes *devuelveListaVecinos(int i){
     return aux;
 }
 
-
 void  inicializaG(nodo grafo[]){
     int i=0;  //Se declara un indice para recorrer el arreglo "grafo".
     while (i<8){
@@ -83,14 +78,9 @@ void  inicializaG(nodo grafo[]){
     }
 }
 
-
-
-
-
  /* ******************CODIGO DE DIJKSTRA**************************** */
  int iniciaNodos(nodo *unGrafo, int id)
 {
-        printf("Entro a inicializa nodos\n");
      int i;
 	 for (i=0; i< 8; i++)
      {
@@ -103,10 +93,8 @@ void  inicializaG(nodo grafo[]){
      return 0;
 }
 
-
 int relax(nodo *unGrafo, int unaID, int otraID)
 {
-    printf("\n... Realizando Relax\n");
 	if (unGrafo[otraID].peso > unGrafo[unaID].peso + 1)
 	{
 		unGrafo[otraID].peso = unGrafo[unaID].peso + 1;  //actualiza peso de nodo adyacente
@@ -115,10 +103,8 @@ int relax(nodo *unGrafo, int unaID, int otraID)
 	return 0;
 }
 
-
 int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 {
-    printf("\nComenzando operacion  'Dijkstra' \n");
 	int cant_visitados, cont=0;
 	iniciaNodos(unGrafo, idInicial);
 	int idMinima = idInicial;
@@ -127,10 +113,8 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 	    int i;
         for (i=0; i< 8; i++)
 		{
-
 			if (unGrafo[i].peso < unGrafo[idMinima].peso && unGrafo[i].visitado!=1)
 			{
-
 				idMinima=i;
 			}
 		}
@@ -142,12 +126,9 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 		}
 		else
 		{
-
             adyacentes *temp = unGrafo[idMinima].primerVecino;
-
 			while (temp->sgte!=NULL)
 			{
-
                 cont++;
 				relax(unGrafo, idMinima, temp->indice);
 				temp=temp->sgte;
@@ -165,8 +146,7 @@ int main(){
     printf("Se Inicializo Grafo \n");
     dijkstra(grafo, 0 , 7);
 
-
-     printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO::::::::::::::::::::  \n ");
+    printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO::::::::::::::::::::  \n ");
 
     return 0;
 }
