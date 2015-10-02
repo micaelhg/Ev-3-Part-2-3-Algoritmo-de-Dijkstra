@@ -145,9 +145,7 @@ int main(){
     inicializaG( grafo );
     printf("Se Inicializo Grafo \n");
     dijkstra(grafo, 0 , 7);
-
     printf("::::::::::::::::::::EL PROGRAMA HA TERMINADO::::::::::::::::::::  \n ");
-
     return 0;
 }
 
