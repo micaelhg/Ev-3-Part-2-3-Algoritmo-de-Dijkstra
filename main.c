@@ -14,6 +14,7 @@ typedef struct tipo_nodo{     /* se define un nodo generico para las dos tipos d
   int visitado; //variable considerada como boolena
   int peso; //Peso
   adyacentes *primerVecino;
+  int largoListaAdy;
 }nodo;
 
 //Funcion que devuelve el nombre del Hospital segun el caso
@@ -68,12 +69,19 @@ adyacentes *devuelveListaVecinos(int i){
     return aux;
 }
 
+int devuelveLargoLista(int i, nodo grafo[]){
+  if (i==0||i==3||i==6||i==7){return 1; }
+
+  else{ return 2;}
+
+}
 void  inicializaG(nodo grafo[]){
     int i=0;  //Se declara un indice para recorrer el arreglo "grafo".
     while (i<8){
         grafo[i].ID=i; //Se le asigna identificador al nodo
         grafo[i].nombreHosp=devuelveChar(i); //se asigna Nombre al nodo.
         grafo[i].primerVecino=devuelveListaVecinos(i); //Se estableces los vecinos predefinidos
+        grafo[i].largoListaAdy=devuelveLargoLista(i, grafo);
         i++;
     }
 }
@@ -105,14 +113,15 @@ int relax(nodo *unGrafo, int unaID, int otraID)
 
 int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 {
-	int cant_visitados, cont=0;
+	int cant_visitados=0, contador=0;
 	iniciaNodos(unGrafo, idInicial);
 	int idMinima = idInicial;
 	do
 	{
+	    printf("%d \n ", cant_visitados);
 	    int i;
         for (i=0; i< 8; i++)
-		{
+		{    //busca una nueva idminima que no este visitada
 			if (unGrafo[i].peso < unGrafo[idMinima].peso && unGrafo[i].visitado!=1)
 			{
 				idMinima=i;
@@ -126,15 +135,20 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 		}
 		else
 		{
+		    //busca vecinos
             adyacentes *temp = unGrafo[idMinima].primerVecino;
-			while (temp->sgte!=NULL)
+            //para cada vecino
+			while (temp->sgte!=NULL  || contador<=unGrafo[idMinima].largoListaAdy)
 			{
-                cont++;
+                contador++;
 				relax(unGrafo, idMinima, temp->indice);
-				temp=temp->sgte;
+				if (temp->sgte!= NULL) {
+                        temp=temp->sgte;
+                }
 			}
 		}
 	} while (cant_visitados<=8);
+	printf("no funciona!\n");
 	return EXIT_FAILURE;
 }
  /* *************************************************************** */
