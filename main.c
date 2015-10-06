@@ -105,9 +105,11 @@ int relax(nodo *unGrafo, int unaID, int otraID)
 {
 	if (unGrafo[otraID].peso > unGrafo[unaID].peso + 1)
 	{
+
 		unGrafo[otraID].peso = unGrafo[unaID].peso + 1;  //actualiza peso de nodo adyacente
 		unGrafo[otraID].IDpadre= unaID;  //actualiza padre de nodo adyacente
 	}
+
 	return 0;
 }
 
@@ -118,7 +120,6 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 	int idMinima = idInicial;
 	do
 	{
-	    printf("%d \n ", cant_visitados);
 	    int i;
         for (i=0; i< 8; i++)
 		{    //busca una nueva idminima que no este visitada
@@ -142,13 +143,13 @@ int dijkstra(nodo unGrafo[], int idInicial, int idFinal)
 			{
                 contador++;
 				relax(unGrafo, idMinima, temp->indice);
-				if (temp->sgte!= NULL) {
-                        temp=temp->sgte;
-                }
+                if(temp->sgte!=NULL){temp=temp->sgte;}else{temp->sgte=NULL;}
+
+
 			}
 		}
 	} while (cant_visitados<=8);
-	printf("no funciona!\n");
+
 	return EXIT_FAILURE;
 }
  /* *************************************************************** */
